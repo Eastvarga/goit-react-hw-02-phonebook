@@ -6,12 +6,16 @@ class App extends Component {
   state = {
     contacts: [],
     name: "",
+    number: "",
   };
 
-  formSubmitHandler = ({ name }) => {
+  formSubmitHandler = ({ name, number }) => {
     this.setState((prevState) => {
       return {
-        contacts: [{ id: uuidv4(), name: name }, ...prevState.contacts],
+        contacts: [
+          { id: uuidv4(), name: name, number: number },
+          ...prevState.contacts,
+        ],
       };
     });
   };
