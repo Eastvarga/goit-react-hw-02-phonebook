@@ -20,6 +20,13 @@ class App extends Component {
     this.setState({ filter: filter });
   };
   formSubmitHandler = ({ name, number }) => {
+    if (this.state.contacts.some((elem) => elem.name === name)) {
+      // console.log(
+      //   this.state.contacts.some((elem) => elem.name === name)
+      // );
+      window.alert(`${name} is already in contacts`);
+      return;
+    }
     this.setState((prevState) => {
       return {
         contacts: [
@@ -31,16 +38,19 @@ class App extends Component {
   };
 
   render() {
+    const filter = this.state.filter.toLowerCase();
     return (
       <div>
+        <h1>Phonebook</h1>
         <Form onSubmit={this.formSubmitHandler} />
+        <h2>Contacts</h2>
         <FindInput onChange={this.filterHendler} />
         <ContactList
           contacts={
             this.state.filter === ""
               ? this.state.contacts
               : this.state.contacts.filter(({ name }) => {
-                  return name.toLowerCase().includes(this.state.filter);
+                  return name.toLowerCase().includes(filter);
                 })
           }
         />
