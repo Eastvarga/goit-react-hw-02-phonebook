@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { filter, title } from "./styles.module.css";
 
 class FindInput extends Component {
   state = {
@@ -11,9 +12,10 @@ class FindInput extends Component {
 
   render() {
     return (
-      <label>
-        Find contacts by name
+      <label className={title}>
+        Find contacts by name:
         <input
+          className={filter}
           // autocomplete="off"
           type="text"
           name="filter"
