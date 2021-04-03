@@ -37,8 +37,19 @@ class App extends Component {
     });
   };
 
+  deleteButtonHandler = (event) => {
+    // console.log(event);
+    const newArr = this.state.contacts.filter(
+      (elem) => elem.id !== event.target.id
+    );
+    this.setState({ contacts: [...newArr] });
+  };
+
   render() {
     const filter = this.state.filter.toLowerCase();
+    const filteredContacts = this.state.contacts.filter(({ name }) => {
+      return name.toLowerCase().includes(filter);
+    });
     return (
       <div>
         <h1>Phonebook</h1>
@@ -46,13 +57,8 @@ class App extends Component {
         <h2>Contacts</h2>
         <FindInput onChange={this.filterHendler} />
         <ContactList
-          contacts={
-            this.state.filter === ""
-              ? this.state.contacts
-              : this.state.contacts.filter(({ name }) => {
-                  return name.toLowerCase().includes(filter);
-                })
-          }
+          onClick={this.deleteButtonHandler}
+          contacts={filteredContacts}
         />
       </div>
     );

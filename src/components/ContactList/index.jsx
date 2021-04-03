@@ -8,6 +8,9 @@ class ContactList extends Component {
           <li key={id}>
             <span>{name}:</span>
             <span>{number}</span>
+            <button id={id} type="button" onClick={this.props.onClick}>
+              Delete
+            </button>
           </li>
         ))}
       </ul>
